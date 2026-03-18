@@ -398,7 +398,7 @@ export default function App() {
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0d0d0d] to-transparent z-10 flex items-center px-4">
             <span className="text-[10px] uppercase tracking-widest font-bold text-rose-500">{t.onBelt}</span>
           </div>
-          <div className="flex gap-8 whitespace-nowrap animate-[conveyor_30s_linear_infinite] px-4">
+          <div className="flex gap-8 whitespace-nowrap animate-[conveyor_120s_linear_infinite] px-4">
             {MENU_ITEMS.map((item, i) => (
               <div key={i} className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
                 <img src={item.image} alt="" className="w-6 h-6 rounded-full object-cover" />
