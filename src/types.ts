@@ -1,14 +1,20 @@
-export type Category = 'Beef' | 'Pork' | 'Seafood' | 'Veggies' | 'Appetizers';
+export type Language = 'en' | 'th';
+
+export type Category = 'Soup' | 'Meat' | 'Vegetable' | 'Appetizer' | 'Water' | 'Seasonal' | 'Rice/Noodle' | 'Dessert' | 'All';
+export type MenuType = 'Included' | 'Add-on';
 
 export interface MenuItem {
   id: string;
   name: string;
-  price: number;
+  nameTh: string;
+  price: number | string;
   category: Category;
+  type: MenuType;
   image: string;
   allergens: string[];
   isVegetarian: boolean;
   description: string;
+  descriptionTh: string;
 }
 
 export interface OrderItem extends MenuItem {
