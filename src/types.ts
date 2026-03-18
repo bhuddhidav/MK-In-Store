@@ -1,6 +1,6 @@
 export type Language = 'en' | 'th';
 
-export type Category = 'Soup' | 'Meat' | 'Vegetable' | 'Appetizer' | 'Water' | 'Seasonal' | 'Rice/Noodle' | 'Dessert' | 'All';
+export type Category = 'Soup' | 'Meat' | 'Vegetable' | 'Appetizer' | 'Seasonal' | 'Rice/Noodle' | 'Dessert' | 'All';
 export type MenuType = 'Included' | 'Add-on';
 
 export interface MenuItem {
@@ -15,6 +15,7 @@ export interface MenuItem {
   isVegetarian: boolean;
   description: string;
   descriptionTh: string;
+  isNew?: boolean;
 }
 
 export interface OrderItem extends MenuItem {

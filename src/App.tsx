@@ -53,7 +53,7 @@ const translations = {
     digitalMenu: 'Digital Menu',
     selectIngredients: 'Select your premium ingredients - Starting at 299 THB/person',
     starterSet: 'Starter Set Quick-Launch',
-    seasonal: 'Seasonal Menu',
+    seasonal: 'Drinks',
     included: 'Included',
     addon: 'Add-on',
     addToCart: 'Add to Cart',
@@ -117,7 +117,6 @@ const translations = {
     meat: 'Meat',
     vegetable: 'Vegetable',
     appetizer: 'Appetizer',
-    water: 'Water',
     riceNoodle: 'Rice/Noodle',
     dessert: 'Dessert',
     veg: 'Veg',
@@ -129,7 +128,8 @@ const translations = {
     dnd: 'DND',
     ready: 'Ready',
     maxItemsAlert: 'Max limit of {max} items reached for this round!',
-    people: 'people'
+    people: 'people',
+    new: 'NEW'
   },
   th: {
     menu: 'เมนู',
@@ -140,7 +140,7 @@ const translations = {
     digitalMenu: 'เมนูดิจิทัล',
     selectIngredients: 'เลือกวัตถุดิบพรีเมียมของคุณ - เริ่มต้นเพียง 299 บาท/ท่าน',
     starterSet: 'สั่งชุดเริ่มต้นด่วน',
-    seasonal: 'เมนูประจำฤดูกาล',
+    seasonal: 'เครื่องดื่ม',
     included: 'รวมในบุฟเฟต์',
     addon: 'สั่งเพิ่มพิเศษ',
     addToCart: 'เพิ่มลงตะกร้า',
@@ -204,7 +204,6 @@ const translations = {
     meat: 'เนื้อ',
     vegetable: 'ผัก',
     appetizer: 'ของว่าง',
-    water: 'น้ำ',
     riceNoodle: 'ข้าว/เส้น',
     dessert: 'ของหวาน',
     veg: 'มัง',
@@ -216,7 +215,8 @@ const translations = {
     dnd: 'ห้ามรบกวน',
     ready: 'พร้อมบริการ',
     maxItemsAlert: 'สั่งได้สูงสุด {max} รายการต่อรอบ!',
-    people: 'คน'
+    people: 'คน',
+    new: 'ใหม่'
   }
 };
 
@@ -446,7 +446,7 @@ export default function App() {
                 </div>
 
                 <div className="flex bg-white/5 p-1 rounded-xl border border-white/10">
-                  {['Soup', 'Meat', 'Vegetable', 'Appetizer', 'Water', 'Rice/Noodle', 'Dessert', 'Seasonal'].map((cat) => (
+                  {['Soup', 'Meat', 'Vegetable', 'Appetizer', 'Rice/Noodle', 'Dessert', 'Seasonal'].map((cat) => (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat as any)}
@@ -528,19 +528,18 @@ export default function App() {
                           </button>
                         </div>
                         
-                        {['Seasonal', 'Soup', 'Meat', 'Vegetable', 'Appetizer', 'Water', 'Rice/Noodle', 'Dessert'].map(cat => {
+                        {['Seasonal', 'Soup', 'Meat', 'Vegetable', 'Appetizer', 'Rice/Noodle', 'Dessert'].map(cat => {
                           const items = filteredMenu.filter(i => i.type === 'Included' && i.category === cat);
                           if (items.length === 0) return null;
                           return (
                             <div key={cat} className="space-y-6">
                               <h3 className="text-lg font-bold text-rose-500 uppercase tracking-widest flex items-center gap-3">
                                 <div className="w-2 h-2 bg-rose-500 rounded-full" />
-                                {cat === 'Seasonal' ? t.seasonal : 
-                                 cat === 'Soup' ? t.soup : 
+                                {cat === 'Soup' ? t.soup : 
                                  cat === 'Meat' ? t.meat : 
                                  cat === 'Vegetable' ? t.vegetable : 
                                  cat === 'Appetizer' ? t.appetizer : 
-                                 cat === 'Water' ? t.water :
+                                 cat === 'Seasonal' ? t.seasonal :
                                  cat === 'Rice/Noodle' ? t.riceNoodle :
                                  t.dessert}
                               </h3>
@@ -571,7 +570,7 @@ export default function App() {
                           </button>
                         </div>
                         
-                        {['Soup', 'Meat', 'Vegetable', 'Appetizer', 'Water', 'Rice/Noodle', 'Dessert'].map(cat => {
+                        {['Soup', 'Meat', 'Vegetable', 'Appetizer', 'Rice/Noodle', 'Dessert', 'Seasonal'].map(cat => {
                           const items = filteredMenu.filter(i => i.type === 'Add-on' && i.category === cat);
                           if (items.length === 0) return null;
                           return (
@@ -582,7 +581,7 @@ export default function App() {
                                  cat === 'Meat' ? t.meat : 
                                  cat === 'Vegetable' ? t.vegetable : 
                                  cat === 'Appetizer' ? t.appetizer : 
-                                 cat === 'Water' ? t.water :
+                                 cat === 'Seasonal' ? t.seasonal :
                                  cat === 'Rice/Noodle' ? t.riceNoodle :
                                  t.dessert}
                               </h3>
@@ -996,6 +995,11 @@ function MenuItemCard({ item, language, t, addToCart }: { item: MenuItem; langua
         )}
         {item.type === 'Add-on' && (
           <span className="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">{t.addon}</span>
+        )}
+        {item.isNew && (
+          <span className="absolute top-3 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase shadow-lg shadow-yellow-500/20">
+            {t.new}
+          </span>
         )}
       </div>
       <div className="p-5">
